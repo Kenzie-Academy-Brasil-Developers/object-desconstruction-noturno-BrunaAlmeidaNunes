@@ -88,7 +88,7 @@ const testReduce = (array) => {
     return totalList
     // retorne o valor de totalList para verificar quanto ficou sua compra
 }
-console.log(testReduce(itemArray))
+//console.log(testReduce(itemArray))
 //testReduce(itemArray);
 
 //Desafio 1. Crie um filtro onde o resultado traz apenas os itens que tem o price maior que 3.
@@ -131,22 +131,19 @@ arrayMap(itemArray);
 //console.log(arrayMap(itemArray))
 //Desafio 3. Faça o total de todos os itens da section 'Padaria'
 
-const padaria = (array) => {
+const padariaTotal = (array) => {
     
-   
-    const result = array.reduce( (acc, {price, quantity, section}) => {
-       
-        if(section === 'Padaria'){
-   
-            acc = price * quantity
-        
+    const padaria = array.filter(({ id, section }) => {
+        if (section === 'Padaria') {
+            return {...id }
         }
+    });
+    const total = padaria.reduce((acc, { price, quantity }) => {
+        acc += price * quantity
         return acc
-    },0)
-    
-        return result
-    // retorne a variável result onde contem os resultados das filtragens
-    
+    }, 0);
+
+    return total
 }
-padaria(itemArray);
-//console.log(padaria(itemArray));
+padariaTotal(itemArray);
+console.log(padariaTotal(itemArray));
